@@ -14,9 +14,9 @@ To solve this lab, submit a comment that calls the `alert` function when the b
 
 Pour résoudre ce lab il suffit de mettre des balises `<script>` avec la fonction `alert()` qui seront interprété par le navigateur l’or de leurs affichage. C’est a dire par exemple dans des commentaires ou un nom d’utilisateur. A chaque affichage de la ligne sur une page le script s’exécutera en local.
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled.png)
+![Untitled](Untitled.png)
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%201.png)
+![Untitled](Untitled%201.png)
 
 ## 2.2
 
@@ -28,9 +28,9 @@ Pour résoudre ce lab il faut aller sur l’exploit server proposé en haut de l
 
 L’ifram sera chargé au chargement de la page d’exploitation. Elle donnera l’impression d’être sur le site normal or il s’agira d’un site attaquant qui affiche juste a l’intérieur le site normal. `onload` fait en sorte que si l’ifram est chargé on execute un script. Ici `this.contentWindow.postMessage` permet de mettre du texte html dans l’ifram. Pour finir la balise `img` tentera de mettre une image pour nom “1” (Elle n’existe pas) mais n’étant pas existante on passera dans le `onerror` qui exécutera la fonction `print`.
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%202.png)
+![Untitled](Untitled%202.png)
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%203.png)
+![Untitled](Untitled%203.png)
 
 ## 2.3
 
@@ -40,9 +40,9 @@ To solve this lab, create an injection that calls the `alert()` function.
 
 Il faut lancer BurpSuite afin de trouver une faille. Ensuite il suffit de réfléchir et de rentrer `\"-alert(1)}//` dans la search bar afin d’injecter le code qui sera ensuite exécuté.
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%204.png)
+![Untitled](Untitled%204.png)
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%205.png)
+![Untitled](Untitled%205.png)
 
 # **3. Command Injection**
 
@@ -56,27 +56,27 @@ user-supplied product and store IDs, and returns the raw output from the
 
 To solve the lab, execute the `whoami` command to determine the name of the current user.
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%206.png)
+![Untitled](Untitled%206.png)
 
 Il faut selectionner toute la partit dans request et faire clique droit puis send to the repeater
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%207.png)
+![Untitled](Untitled%207.png)
 
 Ajouter `& whoami`
 
 Encoder sous forme d’url pour rendre utilisable la commande et passez store à 1
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%208.png)
+![Untitled](Untitled%208.png)
 
 Il faut ensuite rajouter  `#` à la fin et l’encoder pour rendre la commande utilisable. Le `#` permet de mettre en commentaire la fin de la requête.
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%209.png)
+![Untitled](Untitled%209.png)
 
 Remplacer par `cat [chemain dans l’erreur] #`
 
 Le fichier est un script qui va faire office de traitement de la requête
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2010.png)
+![Untitled](Untitled%2010.png)
 
 On peut voir `$1` qui correspond à la 1er variable soit `productId` et `$2` a la seconde donc `storeId`
 
@@ -102,23 +102,23 @@ retrieve the contents of the file.
 
 To solve the lab, execute the `whoami` command and retrieve the output.
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2011.png)
+![Untitled](Untitled%2011.png)
 
 Send la requête post dans le repeater 
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2012.png)
+![Untitled](Untitled%2012.png)
 
 Créer un fichier dans le dossier /var/www/images avec la commande `||whoami>/var/www/images/output.txt||`
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2013.png)
+![Untitled](Untitled%2013.png)
 
 Il faut maintenant rechercher pour changer une image par notre fichier `output.txt`
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2014.png)
+![Untitled](Untitled%2014.png)
 
 Remplacer le fichier image par notre fichier `output.txt`
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2015.png)
+![Untitled](Untitled%2015.png)
 
 # **4. Information Disclosure**
 
@@ -128,16 +128,16 @@ This lab leaks its source code via backup files in a hidden directory. To solve 
 
 Il suffit d’aller sur le fichier `robots.txt` qui permet de dire au robots de google de ne pas référencer certain fichier. Ici il est lisible donc possible de voir qu’il existe un dossier `/backup`
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2016.png)
+![Untitled](Untitled%2016.png)
 
 Il faut alors aller dans le dossier `/backup`
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2017.png)
+![Untitled](Untitled%2017.png)
 
 Voici alors la backup du serveur
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2018.png)
+![Untitled](Untitled%2018.png)
 
 Le résultat est donc `3u38mu0hqpdnstk4z1pp74rx1qmbydzb`
 
-![Untitled](TP%20BurpLabs%20-%20XSS-Ci-ID%20880d4e6ff90d4b37b912c1438f44c8e3/Untitled%2019.png)
+![Untitled](Untitled%2019.png)
